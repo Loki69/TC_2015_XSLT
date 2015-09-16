@@ -3,13 +3,13 @@
 	<xsl:template match="/">
 			"use strict";
 		window.links = [
-					<xsl:call-template name="printAllElement">
+					<xsl:call-template name="printAllDependencyElement">
   						<xsl:with-param name="arrayElement" select="packJSStructure/*[dependencies]"/>
 					</xsl:call-template>
 			   	]
 	</xsl:template>	
 
- <xsl:template name="printAllElement"> 
+ <xsl:template name="printAllDependencyElement"> 
  	 <xsl:param name="arrayElement"/>
  	    			<xsl:for-each select = "$arrayElement">
    						<xsl:variable name="idname" select="id"/>
