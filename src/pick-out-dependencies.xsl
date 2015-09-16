@@ -3,7 +3,15 @@
 	<xsl:template match="/">
 			"use strict";
 		window.links = [
-   					<xsl:for-each select = "packJSStructure/*[dependencies]">
+					<xsl:call-template name="printAllElement">
+  						<xsl:with-param name="arrayElement" select="packJSStructure/*[dependencies]"/>
+					</xsl:call-template>
+			   	]
+	</xsl:template>	
+
+ <xsl:template name="printAllElement"> 
+ 	 <xsl:param name="arrayElement"/>
+ 	    			<xsl:for-each select = "$arrayElement">
    						<xsl:variable name="idname" select="id"/>
 	   						<xsl:for-each select = "dependencies/dependency">
 								{source: "<xsl:value-of select="$idname"/>", target: "<xsl:value-of select="."/>"}
@@ -11,6 +19,6 @@
 				   			</xsl:for-each>
 						<xsl:if test="position() != last()">,</xsl:if>
 			   		</xsl:for-each>
-			   	]
-	</xsl:template>	
+ </xsl:template > 
+
 </xsl:stylesheet>
